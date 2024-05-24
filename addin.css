@@ -5,6 +5,7 @@
     --nav-color: rgba(84, 106, 165, 1);
     --menu-color: rgba(42, 59, 104, 1);
     --main-color: rgba(173, 187, 224, 1);
+    --other-color: rgb(157, 169, 203);
 }
 
 *,
@@ -42,6 +43,7 @@ h1{
 aside{
     background-color: var(--menu-color);
     width: 30vh;
+    height: 100vh;
 }
 .menu-title{
     padding: 1rem 1rem 1rem 1rem;
@@ -82,106 +84,97 @@ aside{
 }
 main{
     background-color: var(--main-color);
+    width: 170vh;
+    height: 100vh;
 }
-.searchbar{
-    padding: 1rem 1rem 1rem 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.new-item{
+    color: var(--menu-color);
+    padding: 1.5rem;
+    font-weight: bold;
+    font-size: 25px;
 }
-#search{
-    width: 125vh;
-    height: 30px;
-    padding: none;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    font-size: 16px;
-}
-#search::placeholder{
-    padding: 1rem;
-}
-#search:focus{
-    border-color: white;
-    box-shadow:0 0 10px rgba(0, 0, 0, 0.2) ;
-}
-.button{
-    background-color: var(--menu-color);
-    text-transform: uppercase;
-    color: white;
-    padding: 4px;
-    height: 30px;
-    width: 100px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-}
-.button:hover{
-    color: yellow;
-}
-.main-activity{
-    display: flex;
-    flex-direction: column;
-}
-.button1{
-    background-color: var(--menu-color);
-    text-transform: uppercase;
-    color: white;
-    padding: 4px;
-    height: 30px;
-    width: 70px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-}
-.button1 a{
-    text-decoration: none;
-    color: white;
-}
-.upper-part{
+.content{
+    background-color: var(--other-color);
+    height: 60vh;
     display: flex;
     flex-direction: row;
-    align-content: right;
-    background-color: var(--main-color);
-    width: 140vh;
-    justify-content: right;
-    padding-left: 4rem;
-    border-radius: 10px;
 }
-.table{
-    padding-bottom: 100px;
+.test1{
+   background-color: var(--other-color);
+   width: 150vh;
+   padding: 1rem;
 }
-.upper-container{
-    padding-left: 6.7rem;
-    padding-bottom:30px;
-    margin-bottom: -40px;
-}
-.inventory-table{
-    border-collapse: collapse;
-    margin: 25px 0;
-    font-size: 1rem;
-    min-width: 170vh;
-    padding-bottom: 30px;
-    
-    
-}
-.inventory-table thead tr{
-    text-align: left;
+#name{
     height: 30px;
-    background-color: var(--menu-color);
-    text-align: left;
-    font-weight: bold; 
-    color: var(--nav-color);  
+    margin-top: 20px;
+    width: 50vh;
+    border-radius: 7px;
+    margin-left: 65px;
+    background-color: var(--main-color);
 }
-.inventory-table th, .inventory-table td{
-    padding: 12px 15px;
+#unit{
+    height: 30px;
+    margin-top: 20px;
+    width: 50vh;
+    border-radius: 7px;
+    margin-left: 70px;
+    background-color: var(--main-color);
 }
-.inventory-table tbody tr{
-    border-bottom: 1px solid var(--nav-color);
-    color: var(--nav-color);
-    height: 4rem;
+#pp{
+    height: 30px;
+    margin-top: 20px;
+    width: 50vh;
+    border-radius: 7px;
+    background-color: var(--main-color);
 }
-
-
-
-
-
+#ppu{
+    height: 30px;
+    margin-top: 20px;
+    margin-left: 13px;
+    width: 50vh;
+    border-radius: 7px;
+    background-color: var(--main-color);
+}
+#description{
+    height: 80px;
+    margin-left:  30px;
+    margin-top: 20px;
+    width: 50vh;
+    border-radius: 7px;
+    background-color: var(--main-color);
+}
+.buttons{
+    justify-content: center;
+    padding: 4rem;
+    align-content: center;
+    padding-left: 15rem;
+    margin-top: -20px;
+}
+button a{
+    text-decoration: none;
+    color: white;
+    background-color: red;
+    font-weight: bold;
+}
+.cancel-button{
+    height: 30px;
+    width: 80px;
+    border-radius: 7px;
+    background-color: red;
+}
+.reset{
+    height: 30px;
+    width: 80px;
+    border-radius: 7px;
+    background-color: var(--nav-color);
+    color: white;
+    font-weight: bold;
+}
+.submit{
+    height: 30px;
+    width: 80px;
+    border-radius: 7px;
+    background-color: var(--nav-color);
+    color: white;
+    font-weight: bold;
+}
