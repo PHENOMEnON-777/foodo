@@ -155,7 +155,7 @@ main{
     padding-bottom:30px;
     margin-bottom: -40px;
 }
-.sales-table{
+.purchases-table{
     border-collapse: collapse;
     margin: 25px 0;
     font-size: 1rem;
@@ -164,7 +164,7 @@ main{
     
     
 }
-.sales-table thead tr{
+.purchases-table thead tr{
     text-align: left;
     height: 30px;
     background-color: var(--menu-color);
@@ -173,10 +173,10 @@ main{
     color: var(--nav-color); 
     text-transform: uppercase; 
 }
-.sales-table th, .sales-table td{
+.purchases-table th, .purchases-table td{
     padding: 12px 15px;
 }
-.sales-table tbody tr{
+.purchases-table tbody tr{
     border-bottom: 1px solid var(--nav-color);
     color: var(--nav-color);
     height: 4rem;

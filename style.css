@@ -147,7 +147,8 @@ main{
     height: 18vh;
     background-color: var(--main-color);
     border-radius: 10px;
-    border:solid var(--nav-color) ;
+    border:solid  2px var(--nav-color) ;
+    color: var(--menu-color);
 }
 .try{
     background-color: var(--nav-color);
@@ -159,6 +160,7 @@ main{
     padding-bottom: 1rem;
     padding-left: 1rem;
     padding-top: 4px;
+    color: var(--menu-color);
 }
 .contain{
     display: flex;
@@ -172,6 +174,7 @@ main{
     border-right: solid var(--nav-color);
     padding-top: 1rem;
     text-align: center;
+   
 }
 .contain2{
     background-color: var(--main-color);
@@ -179,12 +182,13 @@ main{
     border-right: solid var(--nav-color);
     padding-top: 1rem;
     text-align: center;
+
 }
 .contain3{
     background-color: var(--main-color);
     width: 22vh;
     padding-top: 1rem;
-    text-align: center;
+    text-align: center;   
 }
 .writings{
     display: flex;
@@ -214,6 +218,7 @@ main{
     background-color: var(--main-color);
     border-radius: 10px;
     border:solid var(--nav-color) ;
+    color: var(--menu-color);
 }
 .inventory{
     background-color: var(--nav-color);
@@ -269,6 +274,7 @@ main{
     display: flex;
     flex-direction: column;
     border: solid var(--nav-color);
+    color: var(--menu-color);
 }
 .sub-orders{
     background-color: var(--nav-color);
@@ -344,6 +350,7 @@ main{
     border-radius: 10px;
     border-top-left-radius:12px;
     border-top-right-radius:12px;
+    color: var(--menu-color);
 }
 .top-selling{
     background-color: var(--nav-color);
