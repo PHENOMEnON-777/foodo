@@ -1,0 +1,187 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap");
+
+:root{
+    --white-color: #FFFFFF;
+    --nav-color: rgba(84, 106, 165, 1);
+    --menu-color: rgba(42, 59, 104, 1);
+    --main-color: rgba(173, 187, 224, 1);
+}
+
+*,
+*::before,
+*::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+body{
+    background-color: aqua; /*modified here changed the color of the body */   
+
+}
+.foodoo-nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--nav-color);
+    padding: 1rem 1rem 1rem 1rem;
+}
+h1{
+    color: var(--white-color);
+}
+.nav-icons{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    list-style: none;
+}
+.nav-icons i{
+    font-size: 20px;
+    color: var(--white-color);
+}
+aside{
+    background-color: var(--menu-color);
+    width: 30vh;
+}
+.menu-title{
+    padding: 1rem 1rem 1rem 1rem;
+    text-align: center;
+    text-transform: uppercase;
+}
+.menu-list{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    list-style: none;
+}
+.menu-items{
+    text-align: left;
+    padding-left: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 30px;
+    border-radius: 7px;
+    background-color: var(--nav-color) ;
+    color: white;
+    text-transform: uppercase;
+    width: 190px;
+    height: 40px;
+}
+.menu-items a{
+    color: var(--white-color);
+    text-decoration: none;
+    background-color: var(--nav-color);
+
+}
+.menu-items a:hover{
+    color: hsl(60, 94%, 50%);
+   
+}
+.testing{
+    display: flex;
+    flex-direction: row;
+}
+main{
+    background-color: var(--main-color);
+}
+.searchbar{
+    padding: 1rem 1rem 1rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#search{
+    width: 125vh;
+    height: 30px;
+    padding: none;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+}
+#search::placeholder{
+    padding: 1rem;
+}
+#search:focus{
+    border-color: white;
+    box-shadow:0 0 10px rgba(0, 0, 0, 0.2) ;
+}
+.button{
+    background-color: var(--menu-color);
+    text-transform: uppercase;
+    color: white;
+    padding: 4px;
+    height: 30px;
+    width: 100px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.button:hover{
+    color: yellow;
+}
+.main-activity{
+    display: flex;
+    flex-direction: column;
+}
+.button1{
+    background-color: var(--menu-color);
+    text-transform: uppercase;
+    color: white;
+    padding: 4px;
+    height: 30px;
+    width: 70px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.button1 a{
+    text-decoration: none;
+    color: white;
+}
+.upper-part{
+    display: flex;
+    flex-direction: row;
+    align-content: right;
+    background-color: var(--main-color);
+    width: 140vh;
+    justify-content: right;
+    padding-left: 4rem;
+    border-radius: 10px;
+}
+.table{
+    padding-bottom: 100px;
+}
+.upper-container{
+    padding-left: 6.7rem;
+    padding-bottom:30px;
+    margin-bottom: -40px;
+}
+.inventory-table{
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 1rem;
+    min-width: 170vh;
+    padding-bottom: 30px;
+    
+    
+}
+.inventory-table thead tr{
+    text-align: left;
+    height: 30px;
+    background-color: var(--menu-color);
+    text-align: left;
+    font-weight: bold; 
+    color: var(--nav-color);  
+}
+.inventory-table th, .inventory-table td{
+    padding: 12px 15px;
+}
+.inventory-table tbody tr{
+    border-bottom: 1px solid var(--nav-color);
+    color: var(--nav-color);
+    height: 4rem;
+}
+
+
+
+
+

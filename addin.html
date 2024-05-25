@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="addin.css">
+    <title>Foodoo</title>
+    <script src="https://kit.fontawesome.com/7b09d668af.js" crossorigin="anonymous"></script>
+    
+
+</head>
+<body>
+    <nav class="foodoo-nav">
+        <h1 class="logo">Foodoo.</h1>
+        <ul class="nav-icons">
+            <li><a href=""><i class="fa-solid fa-bell"></i></li></a></li>
+            <li><a href=""> <i class="fa-solid fa-circle-user"></i></a></li>
+            <li><a href=""> <i class="fa-solid fa-gear"></i></a></li>
+        </ul>
+    </nav>
+
+    <div class="testing">
+    <aside class="menu">
+        <h1 class="menu-title">Dashboard</h1>
+        <ul class="menu-list">
+            <li class="menu-items" id="box1"><a href="index.html">Home</a></li>
+            <li class="menu-items" id="box2"><a href="inventory.html">inventory</a></li>
+            <li class="menu-items" id="box3"><a href="sales.html">sales</a></li>
+            <li class="menu-items" id="box4"><a href="purchases.html">purchases</a></li>
+        </ul>
+    </aside>
+    <main>
+        <div class="new-item"> New Item</div>
+        
+            <div class="content">
+            <form action="#" method="GET" class="test1">
+                <label for="name"> Name* :</label>
+                <input type="text" id="name" minlength="4" maxlength="80" required><br>
+
+                <label for="unit"> Unit* :</label>
+                <input type="text" id="unit" maxlength="15" required><br>
+
+                <label for="pp"> purchases Price* :</label>
+                <input type="text" id="pp"  required><br>
+
+                <label for="ppu" > Price per Unit* :</label>
+                <input type="text" id="ppu" minlength="4" placeholder="XAF" required><br>
+
+                <label for="description"> Description :</label>
+                <input type="text" id="description" minlength="4" maxlength="90"><br>
+                <div class="buttons">
+                    <input type="reset" class="reset">
+                    <input type="submit" class="submit">
+                    <button class="cancel-button"><a href="inventory.html">Cancel</a></button>
+                </div>
+                
+            </form>
+        </div>
+            
+        
+    </main>
+    </div>
+</body>
