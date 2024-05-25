@@ -1,0 +1,123 @@
+    .form-box {
+        height: 65%;
+        background-color: rgb(57, 68, 97);
+        padding: 50px 60px;
+        z-index: 1000;
+        width: 300px;
+    }
+    
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        color: (138, 162, 228);
+    }
+    
+    .form-box h1 {
+        font-size: 25px;
+        margin: 60px;
+        background-color: rgb(57, 68, 97)
+    }
+    
+    .input-field {
+        margin: 5%;
+        width: 100%;
+        background: rgb(216, 209, 209);
+        border-radius: 7px;
+        display: flex;
+        align-items: center;
+        max-height: 70%;
+        transition: max-height 0.3s;
+        overflow: hidden;
+        transition: max-height 0.3s;
+        overflow: hidden;
+    }
+    
+    input {
+        width: 100%;
+        background-color: ghostwhite;
+        border: 0;
+        outline: 0%;
+        padding: 18px 15px 18px;
+        border: 5px;
+    }
+    
+    .background {
+        position: absolute;
+        height: 100vh;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+    }
+    
+    .background::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background-color: #6072a367;
+    }
+    
+    .background img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .input-field i {
+        margin-left: 15px;
+        color: #6e5656;
+        position: static;
+    }
+    
+    .btn-field {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        color: #353a4967;
+        margin: 2%;
+    }
+    
+    .btn-field button {
+        align-items: normal;
+        flex-basis: 48%;
+        height: 40px;
+        border-radius: 15px;
+        border: 5px;
+        outline: 0;
+        cursor: pointer;
+    }
+    
+    .btn-field button.disable {
+        background: #6072a367;
+        color: aliceblue
+    }
+    
+    .hide {
+        display: none;
+    }
+    
+    .link-direction {
+        font-size: 30px;
+        margin: 4%;
+        background-position: 100%;
+        align-self: center;
+    }
+    
+    .input-group {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .disable {
+        font-size: small;
+    }
+    
+    .signin-btn {
+        background: #6072a367;
+        color: aliceblue
+    }

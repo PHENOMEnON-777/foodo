@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Login page</title>
+    <link rel="stylesheet" href="login.css">
+    <script src="https://kit.fontawesome.com/66881bedbb.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="/background.jpg">
+
+</head>
+
+<body>
+    <div class="background">
+    </div>
+    <div class="form-box">
+        <h1 id="title" style="font-size:50px"> Sign up</h1>
+        <form>
+            <div class="input-group">
+                <div class="input-field" id="name-input-field">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" placeholder="Name" required id="name">
+                </div>
+                <div class=" input-field name ">
+                    <i class="fa-solid fa-lock "></i>
+                    <input type="password" placeholder="password " id="password" required maxlength="10">
+                </div>
+                <div class="input-field ">
+                    <i class="fa-solid fa-envelope "></i>
+                    <input type="email" placeholder="Email@.gmail.com " required id="email">
+                </div>
+
+                <div class="btn-field">
+                    <button type="button" id="signIn" class="signin-btn hide">sign-in</button>
+                    <button type="button" class="disable " id="signUp">sign-up</button>
+                </div>
+
+
+                <div class=" link-direction ">
+                    <p style="font-size:14px" class="signin-paragraph">Do you already have an account ?
+                        <a href="#" id="signin-link"><u>Sign in</u></a>
+                    </p>
+
+                    <p style="font-size:15px " class="signup-paragraph hide">Don't yet have an account ?
+                        <a href="#" id="signup-link"><u>Sign up</u></a>
+                    </p>
+
+                </div>
+
+
+        </form>
+        </div>
+        <pre>
+            
+            <script type="module">
+                
+                // Import the functions you need from the SDKs you need
+                import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js";
+                import { getAuth, createUserWithEmailAndPassword ,signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js";
+                import { getDatabase ,set,ref , update} from "https://www.gstatic.com/firebasejs/10.12.1/firebase-database.js";
+
+                // TODO: Add SDKs for Firebase products that you want to use
+                // https://firebase.google.com/docs/web/setup#available-libraries
+              
+                // Your web app's Firebase configuration
+                const firebaseConfig = {
+                  apiKey: "AIzaSyBdsOVhXNl55vCL2Q0xo5x5AqD8Ab0GTaE",
+                  authDomain: "last-3b8b7.firebaseapp.com",
+                  projectId: "last-3b8b7",
+                  storageBucket: "last-3b8b7.appspot.com",
+                  messagingSenderId: "726003851971",
+                  appId: "1:726003851971:web:7f28abb102eab2bc56b876"
+                };
+              
+                // Initialize Firebase
+                const app = initializeApp(firebaseConfig);
+                const auth = getAuth();
+                const database = getDatabase();
+                signUp.addEventListener('click', (e) => {
+                    var email = document.getElementById('email').value;
+                    var password = document.getElementById('password').value;
+                    createUserWithEmailAndPassword(auth, email, password)
+                    .then((userCredential) => {
+                        // Signed up 
+                        const user = userCredential.user;
+                        // ...
+                        set(ref(database, 'users/' + user.uid), {
+    
+                                email: email,
+                                password: password
+                            })
+                            .then(() => {
+                                // Data saved successfully!
+                                window.location.href = "index.html";
+                               
+                            })
+                            .catch((error) => {
+                                // The write failed...
+                                alert(error);
+                            });
+    
+                    })
+                    .catch((error) => {
+                        const errorCode = error.code;
+                        const errorMessage = error.message;
+                        // ..
+                        alert(errorMessage);
+                    });
+    
+
+});           
+                
+signIn.addEventListener('click', (e) => {
+    var email = document.getElementById('email').value;
+    var password = document.getElementById('password').value;          
+    signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        // ...
+        var lgDate = new Date();
+        update(ref(database, 'users/' + user.uid), {
+
+                late_login: lgDate,
+                password: password
+            })
+            .then(() => {
+                // Data saved successfully!
+                
+                window.location.href = "index.html";
+            })
+            .catch((error) => {
+                // The write failed...
+                alert(error)
+            });
+    })
+    .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        alert(errorMessage);
+    });
+});         
+</script>
+ </pre>
+
+
+</body>
+
+
+<script src="log.js ">
+</script>
+
+
+</html>
