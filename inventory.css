@@ -180,6 +180,9 @@ main{
     color: var(--nav-color);
     height: 4rem;
 }
+.hide {
+   display: none;
+}
 
 
 
