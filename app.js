@@ -39,6 +39,18 @@ app.post('/users', async (req, res) => {
   }
 });
 
-app.listen(3002, () => {
-  console.log('Server listening on port 3002');
+app.get('/purchases', async (req, res) => {
+  try {
+    console.log('Fetching data...');
+    const [rows] = await pool.execute('SELECT Date, Purchaseid, Vendorid, VendorName, Amount FROM itemtable');
+    console.log('Data fetched successfully!');
+    res.json(rows);
+  } catch (err) {
+    console.error('Error in /purchases route:', err);
+    res.status(500).send({ message: 'Error retrieving items' });
+  }
+});
+
+app.listen(6001, () => {
+  console.log('Server listening on port 6001');
 });
