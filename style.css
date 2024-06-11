@@ -5,6 +5,7 @@
     --nav-color: rgba(84, 106, 165, 1);
     --menu-color: rgba(42, 59, 104, 1);
     --main-color: rgba(173, 187, 224, 1);
+    font: 1em helvetica;
 }
 
 *,

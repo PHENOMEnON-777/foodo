@@ -6,6 +6,7 @@
     --menu-color: rgba(42, 59, 104, 1);
     --main-color: rgba(173, 187, 224, 1);
     --other-color: rgb(157, 169, 203);
+    font: 1em helvetica;
 }
 
 *,
