@@ -10,6 +10,7 @@ let signinbtnContainer = document.querySelector(".signin-btn");
 let signupbtnContainer = document.querySelector(".disable");
 
 let nameInput = document.getElementById("name-input-field");
+ 
 
 signinlink.onclick = function() {
 
