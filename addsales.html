@@ -33,21 +33,21 @@
         <div class="new-item"> New Item</div>
         
             <div class="content">
-            <form action="#" method="GET" class="test1">
+            <form id="salesForm" class="test1">
                 <label for="date"> Date* :</label>
-                <input type="date" id="date" minlength="4" maxlength="80" required><br>
+                <input type="text" name="date"id="date" minlength="4" maxlength="80" aria-placeholder="yy-mm-dd" required><br>
 
                 <label for="unit"> Sales Id* :</label>
-                <input type="text" id="unit" maxlength="15" required><br>
+                <input type="text" name="salesid" id="unit" maxlength="15" required><br>
 
                 <label for="pp"> Customer Id* :</label>
-                <input type="text" id="pp"  required><br>
+                <input type="text" name="customerid" id="pp"  required><br>
 
                 <label for="name"> Customer Name* :</label>
-                <input type="text" id="name"  required><br>
+                <input type="text" name="customername" id="name"  required><br>
 
                 <label for="ppu" > Amount* :</label>
-                <input type="text" id="ppu" minlength="5" placeholder="XAF" required><br>
+                <input type="text" name="amount" id="ppu" minlength="5" placeholder="XAF" required><br>
 
                 <div class="buttons">
                     <input type="reset" class="reset">
@@ -57,7 +57,40 @@
                 
             </form>
         </div>
-            
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const form = document.getElementById('salesForm');
+              
+                form.addEventListener('submit', async (event) => {
+                  event.preventDefault();
+              
+                  const formData = new FormData(form);
+                  const data = Object.fromEntries(formData.entries());
+              
+                  try {
+                    const response = await fetch("http://localhost:6001/sales", {
+                      method: "POST",
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify(data)
+                    });
+              
+                    if (!response.ok) {
+                      console.error(`Error: ${response.status} ${response.statusText}`);
+                      throw new Error(`Error: ${response.status} ${response.statusText}`);
+                    }
+              
+                    const result = await response.json();
+                    console.log('Success:', result);
+                    window.location.href = "sales.html";
+                  } catch (error) {
+                    console.error(`Error: ${error.message}`);
+                  }
+                });
+              });
+              
+         </script>   
         
     </main>
     </div>

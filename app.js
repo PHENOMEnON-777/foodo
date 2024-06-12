@@ -69,10 +69,60 @@ app.delete('/purchases/:Purchaseid', async (req, res) => {
 });
 
 
+//ADD ELEMENTS IN THE INVENTORY TABLE
+app.post('/invents', async (req, res) => {
+  try {
+    console.log('Request body:', req.body);
+    const { name, unit, purchasesprice, priceperunit, description } = req.body;
+
+    if (!name) throw new Error('Missing required field: name');
+    if (!unit) throw new Error('Missing required field: unit');
+    if (!purchasesprice) throw new Error('Missing required field: purchasesprice');
+    if (!priceperunit) throw new Error('Missing required field: priceperunit');
+    if (!description) throw new Error('Missing required field: description');
+
+    console.log('Executing query...');
+    const results = await pool.execute(
+      'INSERT INTO foodoo.inventorytable (name, Unit, purchasesprice, priceperunit, description) VALUES(?,?,?,?,?)',
+      [name, unit, purchasesprice, priceperunit, description]
+    );
+    
+    console.log('Query executed successfully!');
+    res.json(results);
+
+  } catch (err) {
+    console.error('Error in /invents route:', err);
+    res.status(500).send({ message: `Error retrieving items: ${err.message}` });
+  }
+});
 
 
+//ADD ELEMENTS IN THE SALES PAGE
+app.post('/sales', async (req, res) => {
+  try {
+    console.log('Request body:', req.body);
+    const { date, salesid, customerid,customername , amount} = req.body;
 
+    if (!date) throw new Error('Missing required field: date');
+    if (!salesid) throw new Error('Missing required field: salesid');
+    if (!customerid) throw new Error('Missing required field: customerid');
+    if (!customername) throw new Error('Missing required field:customername');
+    if (!amount) throw new Error('Missing required field: amount');
 
+    console.log('Executing query...');
+    const results = await pool.execute(
+      'INSERT INTO foodoo.salestable (Date, salesid, customerid, customername, amount) VALUES(?,?,?,?,?)',
+      [date, salesid, customerid, customername, amount]
+    );
+    
+    console.log('Query executed successfully!');
+    res.json(results);
+
+  } catch (err) {
+    console.error('Error in /invents route:', err);
+    res.status(500).send({ message: `Error retrieving items: ${err.message}` });
+  }
+});
 app.listen(6001, () => {
-  console.log('Server listening on port 6003');
+  console.log('Server listening on port 6001');
 });

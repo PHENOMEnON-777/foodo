@@ -33,30 +33,63 @@
         <div class="new-item"> New Item</div>
         
             <div class="content">
-            <form action="#" method="GET" class="test1">
+            <form id="inventoryForm" class="test1">
                 <label for="name"> Name* :</label>
-                <input type="text" id="name" minlength="4" maxlength="80" required><br>
+                <input type="text" name="name" id="name" minlength="4" maxlength="80" required><br>
 
                 <label for="unit"> Unit* :</label>
-                <input type="text" id="unit" maxlength="15" required><br>
+                <input type="text" name="unit" id="unit" maxlength="15" required><br>
 
                 <label for="pp"> purchases Price* :</label>
-                <input type="text" id="pp"  required><br>
+                <input type="text" name="purchasesprice"id="pp"  required><br>
 
                 <label for="ppu" > Price per Unit* :</label>
-                <input type="text" id="ppu" minlength="4" placeholder="XAF" required><br>
+                <input type="text" id="ppu" name="priceperunit" minlength="2" placeholder="XAF" required><br>
 
                 <label for="description"> Description :</label>
-                <input type="text" id="description" minlength="4" maxlength="90"><br>
+                <input type="text" id="description" name="description" minlength="4" maxlength="90"><br>
                 <div class="buttons">
                     <input type="reset" class="reset">
-                    <input type="submit" class="submit">
+                    <input type="submit" class="submit" id="sub">
                     <button class="cancel-button"><a href="inventory.html">Cancel</a></button>
                 </div>
                 
             </form>
         </div>
-            
+         <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const form = document.getElementById('inventoryForm');
+              
+                form.addEventListener('submit', async (event) => {
+                  event.preventDefault();
+              
+                  const formData = new FormData(form);
+                  const data = Object.fromEntries(formData.entries());
+              
+                  try {
+                    const response = await fetch("http://localhost:6001/invents", {
+                      method: "POST",
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify(data)
+                    });
+              
+                    if (!response.ok) {
+                      console.error(`Error: ${response.status} ${response.statusText}`);
+                      throw new Error(`Error: ${response.status} ${response.statusText}`);
+                    }
+              
+                    const result = await response.json();
+                    console.log('Success:', result);
+                    window.location.href = "inventory.html";
+                  } catch (error) {
+                    console.error(`Error: ${error.message}`);
+                  }
+                });
+              });
+              
+         </script>   
         
     </main>
     </div>
