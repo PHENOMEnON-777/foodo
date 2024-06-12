@@ -41,87 +41,20 @@
                 </div>
 
                 <div class="table">
-                    <!-- Added id="inventory-table" to the table tag -->
                     <table id="inventory-table" class="inventory-table">
                         <thead>
                             <tr>
                                 <th></th>
                                 <th>Name</th>
                                 <th>Unit</th>
-                                <th>Type</th>
+                                <th>Purchases Price</th>
+                                <th>Price per Unit</th>
                                 <th>Description</th>
-                                <th>PRICE per unit</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td><img src="https://www.southernliving.com/thmb/O6r8U1Jxw5w1LDDsq6f54arHADw=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/rice-750x750-01-6508d8cf15474c9c88b64bb67ed998db.jpg" height="50" alt="img1"></td>
-                                <td>Rice</td>
-                                <td>1Kg</td>
-                                <td>Goods</td>
-                                <td>small and big grains</td>
-                                <td>880 XAF</td>
-                            </tr>
-                            <tr>
-                                <td><img src=" " height="50" alt="img2"></td>
-                                <td>Tomatoes</td>
-                                <td>5l bucket</td>
-                                <td>Goods</td>
-                                <td></td>
-                                <td>2000 XAF</td>
-                            </tr>
-                            <tr>
-                                <td><img src=" " height="50" alt="img3"></td>
-                                <td>Plantains/ripe</td>
-                                <td>Bunch</td>
-                                <td>Goods</td>
-                                <td>t</td>
-                                <td>3500 XAF</td>
-                            </tr>
-                            <tr>
-                                <td><img src=" " height="50" alt="img1"></td>
-                                <td>Chicken</td>
-                                <td>Singular</td>
-                                <td>Goods</td>
-                                <td></td>
-                                <td>5000 XAF</td>
-                            </tr>
-                            <tr>
-                                <td><img src=" " height="50" alt="img1"></td>
-                                <td>Dry Fish</td>
-                                <td>Piles of 7</td>
-                                <td>Goods</td>
-                                <td></td>
-                                <td>1000 XAF</td>
-                            </tr>
-                            <tr>
-                                <td><img src=" " height="50" alt="img1"></td>
-                                <td>Rice</td>
-                                <td>1Kg</td>
-                                <td>Goods</td>
-                                <td>small and big grains</td>
-                                <td>1500 XAF</td>
-                            </tr>
-                            <tr>
-                                <td><img src=" " height="50" alt="img1"></td>
-                                <td>Cabbage</td>
-                                <td>3 balls</td>
-                                <td>Goods</td>
-                                <td>Normal green and red cabbage available</td>
-                                <td>1000 XAF</td>
-                            </tr>
-                            <tr>
-                                <td><img src=" " height="50" alt=""></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <!-- Placeholder row for "No results found" message -->
-                            <tr id="no-results" style="display:none;">
-                                <td colspan="6" style="text-align:center; color: red;">No results found</td>
-                            </tr>
+                        <tbody id="inventoryBody">
+                            <!-- Rows will be populated here -->
                         </tbody>
                     </table>
                 </div>
@@ -130,43 +63,96 @@
     </div>
     
     <script>
-        document.getElementById('search-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-             // Prevent the default form submission behavior
-            let query = document.getElementById('search').value.toLowerCase();
-            let rows = document.querySelectorAll('#inventory-table tbody tr');
-            let noResults = true;
-             // Flag to track if there are no results
-
-            rows.forEach(row => {
-                let cells = row.querySelectorAll('td');
-                let match = false;
-
-                // Skip the "No results found" row in the search
-                if (row.id === 'no-results') return;
-
-                cells.forEach(cell => {
-                    if (cell.innerText.toLowerCase().includes(query)) {
-                        match = true;
-                    }
-                });
-
-                if (match) {
-                    row.style.display = '';
-                    noResults = false; 
-                    // Found at least one match
-                } else {
-                    row.style.display = 'none';
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const response = await fetch("http://localhost:6001/inventory");
+                if (!response.ok) {
+                    throw new Error(`Error: ${response.status} ${response.statusText}`);
                 }
-            });
+                const inventory = await response.json();
+                const inventoryBody = document.getElementById('inventoryBody');
 
-            // Show or hide the no results row
-            if (noResults) {
-                document.getElementById('no-results').style.display = 'table-row';
-            } else {
-                document.getElementById('no-results').style.display = 'none';
+                inventory.forEach(item => {
+                    const row = document.createElement('tr');
+
+                    const imgCell = document.createElement('td');
+                    const img = document.createElement('img');
+                    img.src = ''; // Add your image source here
+                    img.height = 50;
+                    img.alt = 'img';
+                    imgCell.appendChild(img);
+                    row.appendChild(imgCell);
+
+                    const nameCell = document.createElement('td');
+                    nameCell.textContent = item.name;
+                    row.appendChild(nameCell);
+
+                    const unitCell = document.createElement('td');
+                    unitCell.textContent = item.unit;
+                    row.appendChild(unitCell);
+
+                    const purchasesPriceCell = document.createElement('td');
+                    purchasesPriceCell.textContent = item.purchasesprice;
+                    row.appendChild(purchasesPriceCell);
+
+                    const pricePerUnitCell = document.createElement('td');
+                    pricePerUnitCell.textContent = item.priceperunit;
+                    row.appendChild(pricePerUnitCell);
+
+                    const descriptionCell = document.createElement('td');
+                    descriptionCell.textContent = item.description;
+                    row.appendChild(descriptionCell);
+
+                    // Create the actions cell
+                    const actionsCell = document.createElement('td');
+
+                    // Create and append the update button
+                    const updateButton = document.createElement('button');
+                    updateButton.textContent = 'Update';
+                    updateButton.setAttribute('style', 'background-color: rgba(42, 59, 104, 1); color: rgba(173, 187, 224, 1);'); 
+                    updateButton.onclick = () => handleUpdate(item);
+                    actionsCell.appendChild(updateButton);
+
+                    // Create and append the delete button
+                    const deleteButton = document.createElement('button');
+                    deleteButton.textContent = 'Delete';
+                    deleteButton.setAttribute('style', 'background-color: red; color: black;');
+                    deleteButton.onclick = () => handleDelete(item.name);
+                    actionsCell.appendChild(deleteButton);
+
+                    row.appendChild(actionsCell);
+
+                    inventoryBody.appendChild(row);
+                });
+            } catch (error) {
+                console.error(`Error: ${error.message}`);
             }
         });
+
+        // Function to handle the update action
+        function handleUpdate(item) {
+            // Implement the update functionality here
+            console.log('Update item:', item);
+            // You can redirect to an update form page or open a modal for editing
+        }
+
+        // Function to handle the delete action
+        async function handleDelete(name) {
+            if (confirm('Are you sure you want to delete this item?')) {
+                try {
+                    const response = await fetch(`http://localhost:6001/inventory/${name}`, {
+                        method: 'DELETE'
+                    });
+                    if (!response.ok) {
+                        throw new Error(`Error: ${response.status} ${response.statusText}`);
+                    }
+                    console.log('Delete successful');
+                    location.reload(); // Reload the page to reflect the changes
+                } catch (error) {
+                    console.error(`Error: ${error.message}`);
+                }
+            }
+        }
     </script>
 </body>
 </html>

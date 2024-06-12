@@ -97,7 +97,39 @@ app.post('/invents', async (req, res) => {
 });
 
 
+app.get('/inventory', async (req, res) => {
+  try {
+    console.log('Fetching inventory data...');
+    const [results] = await pool.execute('SELECT  name, unit, purchasesprice, priceperunit, description FROM foodoo.inventorytable');
+    console.log('Inventory data fetched successfully!', results);
+    res.json(results);
+  } catch (err) {
+    console.error('Error fetching inventory data:', err);
+    res.status(500).send({ message: `Error retrieving inventory data: ${err.message}` });
+  }
+});
+
+app.delete('/inventory/:name', async (req, res) => {
+  try {
+    const {name } = req.params;
+    console.log(`Deleting item with ID: ${name}`);
+
+    const [results] = await pool.execute('DELETE FROM foodoo.inventorytable WHERE name= ?', [name]);
+
+    if (results.affectedRows === 0) {
+      return res.status(404).send({ message: 'Item not found' });
+    }
+
+    console.log('Item deleted successfully!');
+    res.send({ message: 'Item deleted successfully!' });
+  } catch (err) {
+    console.error('Error deleting item:', err);
+    res.status(500).send({ message: `Error deleting item: ${err.message}` });
+  }
+});
+
 //ADD ELEMENTS IN THE SALES PAGE
+
 app.post('/sales', async (req, res) => {
   try {
     console.log('Request body:', req.body);
@@ -123,6 +155,37 @@ app.post('/sales', async (req, res) => {
     res.status(500).send({ message: `Error retrieving items: ${err.message}` });
   }
 });
+
+
+// GET route to fetch sales data
+app.get('/sales', async (req, res) => {
+  try {
+    console.log('Fetching sales data...');
+    const [results] = await pool.execute('SELECT Date, salesid, customerid, customername, amount FROM foodoo.salestable');
+    console.log('Sales data fetched successfully!', results);
+    res.json(results);
+  } catch (err) {
+    console.error('Error fetching sales data:', err);
+    res.status(500).send({ message: `Error retrieving sales data: ${err.message}` });
+  }
+});
+
+app.delete('/sales/:salesid', async (req, res) => {
+  try {
+    const { salesid } = req.params;
+    console.log(`Deleting sale with ID: ${salesid}`);
+    await pool.execute('DELETE FROM foodoo.salestable WHERE salesid = ?', [salesid]);
+    console.log('Sale deleted successfully!');
+    res.status(204).send(); // No content
+  } catch (err) {
+    console.error('Error deleting sale:', err);
+    res.status(500).send({ message: `Error deleting sale: ${err.message}` });
+  }
+});
+
+
+
+
 app.listen(6001, () => {
   console.log('Server listening on port 6001');
 });
