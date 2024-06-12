@@ -25,7 +25,8 @@ body{
     align-items: center;
     justify-content: space-between;
     background-color: var(--nav-color);
-    padding: 1rem 1rem 1rem 1rem;
+    padding: 1rem 1rem 1rem 1rem; 
+    min-width: 100vh;  
 }
 h1{
     color: var(--white-color);
@@ -83,6 +84,7 @@ aside{
 }
 main{
     background-color: var(--main-color);
+    min-height: 100vh;
 }
 .searchbar{
     padding: 1rem 1rem 1rem 1rem;

@@ -49,6 +49,7 @@
                                 <th>Vendor ID</th>
                                 <th>Vendor Name</th>
                                 <th>Amount</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody id="purchasesBody">
@@ -93,12 +94,57 @@
                     amountCell.textContent = purchase.Amount;
                     row.appendChild(amountCell);
 
-                    purchasesBody.appendChild(row);
+                    // Create the actions cell
+                    const actionsCell = document.createElement('td');
+
+                    // Create and append the update button
+                    const updateButton = document.createElement('button');
+                    updateButton.textContent = 'Update';
+                    updateButton.setAttribute('style', 'background-color: rgba(42, 59, 104, 1); color: rgba(173, 187, 224, 1);'); 
+                    updateButton.onclick = () => handleUpdate(purchase);
+                    actionsCell.appendChild(updateButton);
+
+                    // Create and append the delete button
+                    const deleteButton = document.createElement('button');
+                    deleteButton.textContent = 'Delete';
+                    deleteButton.setAttribute('style', 'background-color: red; color: black;');
+                    deleteButton.onclick = () => handleDelete(purchase.Purchaseid);
+                    actionsCell.appendChild(deleteButton);
+
+                    row.appendChild(actionsCell);
+
+                     purchasesBody.appendChild(row);
                 });
             } catch (error) {
                 console.error(`Error: ${error.message}`);
             }
         });
+
+
+        // Function to handle the update action
+        function handleUpdate(purchase) {
+            // Implement the update functionality here
+            console.log('Update purchase:', purchase);
+            // You can redirect to an update form page or open a modal for editing
+        }
+
+        // Function to handle the delete action
+        async function handleDelete(purchaseId) {
+            if (confirm('Are you sure you want to delete this purchase?')) {
+                try {
+                    const response = await fetch(`http://localhost:6001/purchases/${purchaseId}`,{
+                        method: 'DELETE'
+                    });
+                    if (!response.ok) {
+                        throw new Error('Error: ${response.status} ${response.statusText}');
+                    }
+                    console.log('Delete successful');
+                    location.reload(); // Reload the page to reflect the changes
+                } catch (error) {
+                    console.error(`Error: ${error.message}`);
+                }
+            }
+        }
     </script>
 </body>
 </html>

@@ -51,6 +51,28 @@ app.get('/purchases', async (req, res) => {
   }
 });
 
+// DELETE route to delete a purchase by Purchaseid
+app.delete('/purchases/:Purchaseid', async (req, res) => {
+  try {
+    const { Purchaseid } = req.params;
+    console.log('Deleting purchase with ID: ${Purchaseid}');
+    const results = await pool.execute('DELETE FROM itemtable WHERE Purchaseid = ?', [Purchaseid]);
+    if (results[0].affectedRows === 0) {
+      return res.status(404).send({ message: 'Purchase not found' });
+    }
+    console.log('Purchase deleted successfully!');
+    res.send({ message: 'Purchase deleted successfully' });
+  } catch (err) {
+    console.error('Error in /purchases/:Purchaseid route:', err);
+    res.status(500).send({ message: 'Error deleting purchase' });
+  }
+});
+
+
+
+
+
+
 app.listen(6001, () => {
-  console.log('Server listening on port 6001');
+  console.log('Server listening on port 6003');
 });
