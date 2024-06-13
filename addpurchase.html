@@ -32,7 +32,7 @@
             <div class="content">
                 <form id="purchaseForm" class="test1">
                     <label for="date">Date*:</label>
-                    <input type="text" name="date" id="date" minlength="4" maxlength="80" placeholder="yy-mm-dd" required><br>
+                    <input type="datetime" name="date" id="date" minlength="4" maxlength="80" placeholder="yy-mm-dd" required><br>
 
                     <label for="unit">Purchase Id*:</label>
                     <input type="text" name="Purchaseid" id="unit" maxlength="15" required><br>
@@ -51,6 +51,11 @@
                         <input type="submit" class="submit" id="sub">
                         <button class="cancel-button"><a href="purchases.html">Cancel</a></button>
                     </div>
+                    <div id="dialogModal" class="dialog-modal">
+                        <div class="dialog-content">
+                            <span class="dialog-close">&times;</span>
+                            <p id="dialogMessage"></p>
+                        </div>
                 </form>
             </div>
         </main>

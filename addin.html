@@ -53,44 +53,83 @@
                     <input type="submit" class="submit" id="sub">
                     <button class="cancel-button"><a href="inventory.html">Cancel</a></button>
                 </div>
+                <div id="dialogModal" class="dialog-modal">
+                  <div class="dialog-content">
+                      <span class="dialog-close">&times;</span>
+                      <p id="dialogMessage"></p>
+                  </div>
+              </div>
                 
             </form>
         </div>
-         <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                const form = document.getElementById('inventoryForm');
-              
-                form.addEventListener('submit', async (event) => {
+        <script>
+          document.getElementById('name').addEventListener('input', function(e) {
+            var input = e.target.value;
+            e.target.value = input.replace(/[^a-zA-Z\s]/g, '');
+            document.getElementById('unit').addEventListener('input', function(e) {
+              var input = e.target.value;
+              e.target.value = input.replace(/[^0-9]/g, '');
+          });
+
+          document.getElementById('pp').addEventListener('input', function(e) {
+              var input = e.target.value;
+              e.target.value = input.replace(/[^0-9]/g, '');
+          });
+
+          document.getElementById('ppu').addEventListener('input', function(e) {
+              var input = e.target.value;
+              e.target.value = input.replace(/[^0-9]/g, '');
+          });
+        });
+          document.addEventListener('DOMContentLoaded', () => {
+              const form = document.getElementById('inventoryForm');
+              const dialogModal = document.getElementById('dialogModal');
+              const dialogMessage = document.getElementById('dialogMessage');
+              const dialogClose = document.getElementsByClassName('dialog-close')[0];
+  
+              form.addEventListener('submit', async (event) => {
                   event.preventDefault();
-              
+  
                   const formData = new FormData(form);
                   const data = Object.fromEntries(formData.entries());
-              
+  
                   try {
-                    const response = await fetch("http://localhost:6001/invents", {
-                      method: "POST",
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify(data)
-                    });
-              
-                    if (!response.ok) {
-                      console.error(`Error: ${response.status} ${response.statusText}`);
-                      throw new Error(`Error: ${response.status} ${response.statusText}`);
-                    }
-              
-                    const result = await response.json();
-                    console.log('Success:', result);
-                    window.location.href = "inventory.html";
+                      const response = await fetch("http://localhost:6001/invents", {
+                          method: "POST",
+                          headers: {
+                              'Content-Type': 'application/json'
+                          },
+                          body: JSON.stringify(data)
+                      });
+  
+                      if (!response.ok) {
+                          throw new Error(`Error: ${response.status} ${response.statusText}`);
+                      }
+  
+                      const result = await response.json();
+                      showDialog('Success: Item added successfully');
+                      setTimeout(() => {
+                          window.location.href = "inventory.html";
+                      }, 2000);
                   } catch (error) {
-                    console.error(`Error: ${error.message}`);
+                      showDialog(`THIS ITEM ALREADY EXIST ,PLEASE ENTER A DIFFERENT NAME!`);
                   }
-                });
               });
-              
-         </script>   
-        
-    </main>
-    </div>
-</body>
+  
+              function showDialog(message) {
+                  dialogMessage.textContent = message;
+                  dialogModal.style.display = 'block';
+              }
+  
+              dialogClose.onclick = function() {
+                  dialogModal.style.display = 'none';
+              }
+  
+              window.onclick = function(event) {
+                  if (event.target == dialogModal) {
+                      dialogModal.style.display = 'none';
+                  }
+              }
+          });
+      </script>
+  </body>

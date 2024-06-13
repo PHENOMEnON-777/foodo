@@ -60,6 +60,26 @@
             </div>
         </main>
     </div>
+    <!-- Update Modal -->
+<div id="updateModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Update Purchase</h2>
+        <form id="updateForm">
+            <input type="hidden" id="updatePurchaseId">
+            <label for="updateDate">Date:</label>
+            <input type="date" id="updateDate" required>
+            <label for="updateVendorId">Vendor ID:</label>
+            <input type="text" id="updateVendorId" required> 
+            <label for="updateVendorName">Vendor Name:</label>
+            <input type="text" id="updateVendorName" required>
+            <label for="updateAmount">Amount:</label>
+            <input type="number" id="updateAmount" required>
+            <button type="submit" class="button">Update</button>
+        </form>
+    </div>
+</div>
+
 
     <script>
         document.addEventListener('DOMContentLoaded', async () => {

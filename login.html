@@ -45,6 +45,14 @@
                     </p>
 
                 </div>
+                <!-- Dialog Modal -->
+<div id="dialogModal" class="dialog-modal">
+    <div class="dialog-content">
+        <span class="dialog-close">&times;</span>
+        <p id="dialogMessage"></p>
+    </div>
+</div>
+
 
 
         </form>
@@ -70,76 +78,83 @@
                   messagingSenderId: "726003851971",
                   appId: "1:726003851971:web:7f28abb102eab2bc56b876"
                 };
+
+                function showDialog(message) {
+                    const modal = document.getElementById('dialogModal');
+                    const span = document.getElementsByClassName('dialog-close')[0];
+                    const messageElement = document.getElementById('dialogMessage');
+                    
+                    messageElement.textContent = message;
+                    modal.style.display = 'block';
+                
+                    span.onclick = function() {
+                        modal.style.display = 'none';
+                    }
+                
+                    window.onclick = function(event) {
+                        if (event.target == modal) {
+                            modal.style.display = 'none';
+                        }
+                    }
+                }
+                
               
                 // Initialize Firebase
                 const app = initializeApp(firebaseConfig);
                 const auth = getAuth();
                 const database = getDatabase();
+
+                document.getElementById('name').addEventListener('input', function(e) {
+                    var input = e.target.value;
+                    e.target.value = input.replace(/[^a-zA-Z\s]/g, '');
+                });
+                
+            
                 signUp.addEventListener('click', (e) => {
                     var email = document.getElementById('email').value;
                     var password = document.getElementById('password').value;
                     createUserWithEmailAndPassword(auth, email, password)
-                    .then((userCredential) => {
-                        // Signed up 
-                        const user = userCredential.user;
-                        // ...
-                        set(ref(database, 'users/' + user.uid), {
-    
-                                email: email,
-                                password: password
-                            })
-                            .then(() => {
-                                // Data saved successfully!
-                                window.location.href = "index.html";
-                               
-                            })
-                            .catch((error) => {
-                                // The write failed...
-                                alert(error);
-                            });
-    
-                    })
-                    .catch((error) => {
-                        const errorCode = error.code;
-                        const errorMessage = error.message;
-                        // ..
-                        alert(errorMessage);
-                    });
-    
-
-});           
-                
-signIn.addEventListener('click', (e) => {
-    var email = document.getElementById('email').value;
-    var password = document.getElementById('password').value;          
-    signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-        // Signed in 
-        const user = userCredential.user;
-        // ...
-        var lgDate = new Date();
-        update(ref(database, 'users/' + user.uid), {
-
-                late_login: lgDate,
-                password: password
-            })
-            .then(() => {
-                // Data saved successfully!
-                
-                window.location.href = "index.html";
-            })
-            .catch((error) => {
-                // The write failed...
-                alert(error)
-            });
-    })
-    .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        alert(errorMessage);
-    });
-});         
-</script>
+                        .then((userCredential) => {
+                            const user = userCredential.user;
+                            set(ref(database, 'users/' + user.uid), {
+                                    email: email,
+                                    password: password
+                                })
+                                .then(() => {
+                                    window.location.href = "index.html";
+                                })
+                                .catch((error) => {
+                                    showDialog(error.message);
+                                });
+                        })
+                        .catch((error) => {
+                            showDialog(error.message);
+                        });
+                });
+            
+                signIn.addEventListener('click', (e) => {
+                    var email = document.getElementById('email').value;
+                    var password = document.getElementById('password').value;
+                    signInWithEmailAndPassword(auth, email, password)
+                        .then((userCredential) => {
+                            const user = userCredential.user;
+                            var lgDate = new Date();
+                            update(ref(database, 'users/' + user.uid), {
+                                    late_login: lgDate,
+                                    password: password
+                                })
+                                .then(() => {
+                                    window.location.href = "index.html";
+                                })
+                                .catch((error) => {
+                                    showDialog(error.message);
+                                });
+                        })
+                        .catch((error) => {
+                            showDialog(error.message);
+                        });
+                });
+            </script>
  </pre>
 
 
