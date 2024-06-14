@@ -17,7 +17,7 @@
     
 }
 body{
-    background-color: aqua; /*modified here changed the color of the body */   
+    background-color:var(--main-color); /*modified here changed the color of the body */   
 
 }
 .foodoo-nav{
@@ -187,6 +187,94 @@ main{
 }
 
 
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    #search {
+        width: 100%;
+    }
+
+    .upper-part {
+        width: 100%;
+    }
+
+    .inventory-table {
+        min-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    #search {
+        width: 70%;
+    }
+    .menu-items {
+        padding: 0.5rem;
+        width: 100%;
+        text-align: center;
+    }
+    .foodoo-nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-icons {
+        justify-content: flex-end;
+        width: 100%;
+    }
+
+    aside {
+        width: 100%;
+    }
+
+    .testing {
+        flex-direction: column;
+    }
+
+    .upper-part {
+        padding-left: 1rem;
+    }
+
+    .inventory-table {
+        font-size: 0.9rem;
+    }
+
+    .button1 {
+        width: 100%;
+        text-align: center;
+    }
+
+    .upper-container {
+        padding-left: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-icons i {
+        font-size: 16px;
+    }
+
+    .menu-items {
+        padding: 0.5rem;
+        font-size: 0.8rem;
+    }
+
+    #search {
+        font-size: 14px;
+    }
+
+    .button, .button1 {
+        width: 80px;
+        font-size: 0.8rem;
+    }
+
+    .inventory-table th, .inventory-table td {
+        padding: 8px 10px;
+    }
+
+    .inventory-table {
+        font-size: 0.8rem;
+    }
+}
 
 
 
