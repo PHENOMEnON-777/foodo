@@ -83,7 +83,7 @@ app.post('/invents', async (req, res) => {
 
     console.log('Executing query...');
     const results = await pool.execute(
-      'INSERT INTO foodoo.inventorytable (name, Unit, purchasesprice, priceperunit, description) VALUES(?,?,?,?,?)',
+      'INSERT INTO inventorytable (name, Unit, purchasesprice, priceperunit, description) VALUES(?,?,?,?,?)',
       [name, unit, purchasesprice, priceperunit, description]
     );
     
@@ -100,7 +100,7 @@ app.post('/invents', async (req, res) => {
 app.get('/inventory', async (req, res) => {
   try {
     console.log('Fetching inventory data...');
-    const [results] = await pool.execute('SELECT  name, unit, purchasesprice, priceperunit, description FROM foodoo.inventorytable');
+    const [results] = await pool.execute('SELECT  name, unit, purchasesprice, priceperunit, description FROM inventorytable');
     console.log('Inventory data fetched successfully!', results);
     res.json(results);
   } catch (err) {
@@ -114,7 +114,7 @@ app.delete('/inventory/:name', async (req, res) => {
     const {name } = req.params;
     console.log(`Deleting item with ID: ${name}`);
 
-    const [results] = await pool.execute('DELETE FROM foodoo.inventorytable WHERE name= ?', [name]);
+    const [results] = await pool.execute('DELETE FROM inventorytable WHERE name= ?', [name]);
 
     if (results.affectedRows === 0) {
       return res.status(404).send({ message: 'Item not found' });
@@ -143,7 +143,7 @@ app.post('/sales', async (req, res) => {
 
     console.log('Executing query...');
     const results = await pool.execute(
-      'INSERT INTO foodoo.salestable (Date, salesid, customerid, customername, amount) VALUES(?,?,?,?,?)',
+      'INSERT INTO salestable (date, salesid, customerid, customername, amount) VALUES(?,?,?,?,?)',
       [date, salesid, customerid, customername, amount]
     );
     
@@ -161,7 +161,7 @@ app.post('/sales', async (req, res) => {
 app.get('/sales', async (req, res) => {
   try {
     console.log('Fetching sales data...');
-    const [results] = await pool.execute('SELECT Date, salesid, customerid, customername, amount FROM foodoo.salestable');
+    const [results] = await pool.execute('SELECT Date, salesid, customerid, customername, amount FROM salestable');
     console.log('Sales data fetched successfully!', results);
     res.json(results);
   } catch (err) {
@@ -174,7 +174,7 @@ app.delete('/sales/:salesid', async (req, res) => {
   try {
     const { salesid } = req.params;
     console.log(`Deleting sale with ID: ${salesid}`);
-    await pool.execute('DELETE FROM foodoo.salestable WHERE salesid = ?', [salesid]);
+    await pool.execute('DELETE FROM salestable WHERE salesid = ?', [salesid]);
     console.log('Sale deleted successfully!');
     res.status(204).send(); // No content
   } catch (err) {

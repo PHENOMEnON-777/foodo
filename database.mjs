@@ -1,10 +1,11 @@
 import mysql from 'mysql2'
 
 const pool=mysql.createPool({
-    host: 'localhost',
+    host: 'roundhouse.proxy.rlwy.net',
     user: 'root',
-    password:'assolaange777',
-    database:'foodoo'
+    password:'GipINKTopqxvbHmixQOalqbMMjuYLzLw',
+    database:'railway',
+    port:54451
 }).promise()
 
  export { pool };
