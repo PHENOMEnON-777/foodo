@@ -214,3 +214,141 @@ button a{
     text-decoration: none;
     cursor: pointer;
 }
+
+
+/* Add responsive design */
+
+/* Mobile devices (max-width: 480px) */
+@media only screen and (max-width: 480px) {
+    /* Adjust font sizes and padding */
+    body {
+      font-size: 14px;
+    }
+   .foodoo-nav {
+      padding: 0.5rem 1rem;
+    }
+    h1 {
+      font-size: 18px;
+    }
+   .nav-icons i {
+      font-size: 16px;
+    }
+    aside {
+      width: 100vw;
+      height: 100vh;
+    }
+   .menu-title {
+      padding: 0.5rem 1rem;
+    }
+   .menu-list {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+   .menu-items {
+      width: 100%;
+      height: 30px;
+      padding: 0.5rem 1rem;
+    }
+   .testing {
+      flex-direction: column;
+    }
+    main {
+      width: 100vw;
+      height: 100vh;
+    }
+   .new-item {
+      font-size: 20px;
+    }
+   .content {
+      height: 40vh;
+    }
+   .test1 {
+      width: 100vw;
+      padding: 0.5rem 1rem;
+    }
+    #date, #name, #unit, #pp, #ppu {
+      width: 100%;
+      margin: 0.5rem 0;
+    }
+   .buttons {
+      padding: 2rem 0;
+    }
+    button a {
+      font-size: 14px;
+    }
+   .cancel-button,.submit,.reset {
+      width: 100%;
+      height: 30px;
+      margin: 0.5rem 0;
+    }
+  }
+  
+  /* Tablet devices (min-width: 481px and max-width: 768px) */
+  @media only screen and (min-width: 481px) and (max-width: 768px) {
+    /* Adjust font sizes and padding */
+    body {
+      font-size: 14px;
+    }
+   .foodoo-nav {
+      padding: 1rem 2rem;
+    }
+    h1 {
+      font-size: 18px;
+    }
+   .nav-icons i {
+      font-size: 18px;
+    }
+    aside {
+      width: 40vw;
+      height: 100vh;
+    }
+   .menu-title {
+      padding: 1rem 2rem;
+    }
+   .menu-list {
+      flex-direction: column;
+      gap: 1rem;
+    }
+   .menu-items {
+      width: 100%;
+      height: 40px;
+      padding: 1rem 2rem;
+    }
+   .testing {
+      flex-direction: row;
+    }
+    main {
+      width: 60vw;
+      height: 100vh;
+    }
+   .new-item {
+      font-size: 18px;
+    }
+   .content {
+      height: 50vh;
+    }
+   .test1 {
+      width: 60vw;
+      padding: 1rem 2rem;
+    }
+    #date, #name, #unit, #pp, #ppu, #description {
+      width: 100%;
+      margin: 1rem 0;
+    }
+   .buttons {
+      padding: 3rem 0;
+    }
+    button a {
+      font-size: 12px;
+    }
+   .cancel-button,.submit,.reset {
+      width: 100%;
+      height: 40px;
+      margin: 1rem 0;
+    }
+  }
+  
+  /* Desktop devices (min-width: 769px) */
+  @media only screen and (min-width: 769px) {
+    /* No changes needed, using default styles */
+  }
